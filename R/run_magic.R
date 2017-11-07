@@ -1,4 +1,28 @@
-run_magic <- function(data, t, lib_size_norm=TRUE, log_transform=FALSE, pseudo_count=0.1, npca=20, k=30, ka=10, epsilon=1, rescale_percent=0) {
+#' @title Do the magic!
+#'
+#' @param data the data in some format
+#' @param t_diffusion diffusion time; suggested to start with 6 and increase it
+#' up to 12.
+#' @param lib_size_norm Default: TRUE.
+#' @param log_transform Default: FALSE.
+#' @param pseudo-count A number indicating how much should be added to avoid
+#'  log-transformation of zeros. Default: 0.1.
+#' @param npca number of PCA components that should be used; default: 20.
+#' @param k Number of nearest neighbors to use when running MAGIC. Default: 30.
+#' @param ka kNN-autotune parameter for running MAGIC; default: 10
+#' @param epsilon a value for the standard deviation of the kernel. Default: 1.
+#' \code{epsilon = 0} is the uniform kernel.
+#' @param rescale_percent To which percentile should the data be re-scaled.
+#' Note: Do not set this higher than 0 if you also want to log-transform.
+#' Default: 0.
+#'
+#' @export
+#'
+run_magic <- function(data, t_diffusion, lib_size_norm=TRUE,
+                      log_transform=FALSE,
+                      pseudo_count=0.1,
+                      npca=20, k=30,
+                      ka=10, epsilon=1, rescale_percent=0) {
 
   if (lib_size_norm){
     print('Library size normalization')
@@ -7,7 +31,7 @@ run_magic <- function(data, t, lib_size_norm=TRUE, log_transform=FALSE, pseudo_c
   }
 
   if (log_transform){
-    print('Log transform')
+    print('Log transforming')
     data <- log(data + pseudo_count)
   }
 
@@ -85,6 +109,13 @@ run_magic <- function(data, t, lib_size_norm=TRUE, log_transform=FALSE, pseudo_c
 
 }
 
+#' Another function
+#'
+#' @description Not sure what it does.
+#'
+#' @param A some parameter
+#' @param n some other parameter
+#' @return not sure
 "%^%"<-function(A,n){
   if(n==1) A else {B<-A; for(i in (2:n)){A<-A%*%B}}; A
 }

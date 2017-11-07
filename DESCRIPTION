@@ -1,0 +1,13 @@
+Package: Rmagic
+Type: Package
+Title: Markov Affinity-based Graph Imputation of Cells
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: David van Dijk <davidvandijk@gmail.com>
+Description: A diffusion-based imputation method to denoise single-cell
+    RNA-sequencing data.
+or wrangling, processing and visualizing scRNA-seq data.
+Imports: 
+Suggests:
+License: MIT + file LICENSE
+LazyData: true
